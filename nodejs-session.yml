@@ -1,30 +1,36 @@
-name: $NODE_SESSION
-varsion: "0.3"
+name: NODE_SESSION-11163-30257-11474
+version: "0.3"
 
-acess_policy:
+# Access control:
+#   - only the data owner (CREATOR) can read or update the session
+#   - even the data owner cannot read the session secrets (i.e., the volume key and tag) or delete the session
+
+access_policy:
   read:
    - CREATOR
   update:
    - CREATOR
 
 services:
-  - name: app
-    image_name: node_image
-    command: npm start
-    enviroment:
+   - name: app
+     image_name: node_image
+     mrenclaves: [e9744ef0e1123da5772b4440bc186c6bf19cad257d326215dfdf76cdb93c83d8]
+     command: node /app/app.js
+     environment:
       SCONE_MODE: hw
       SCONE_LOG: "7"
       GREETING: "Hello NodeJS"
-    pwd: /
+     pwd: /
 
 images:
   - name: node_image
     injection_files:
-      - path: /tls/cert.pem
+      - path:  /tls/cert.pem
         content: $$SCONE::app.crt$$
       - path: /tls/key.pem
         content: $$SCONE::app.key$$
 
+# Import client credentials from DB session.
 secrets:
   - name: api_ca_key
     kind: private-key
@@ -41,8 +47,8 @@ secrets:
     dns:
       - app
 
+
 security:
   attestation:
     tolerate: [debug-mode, hyperthreading, insecure-igpu, outdated-tcb]
     ignore_advisories: ["INTEL-SA-00076", "INTEL-SA-00088", "INTEL-SA-00106", "INTEL-SA-00115", "INTEL-SA-00135", "INTEL-SA-00203", "INTEL-SA-00161", "INTEL-SA-00220", "INTEL-SA-00270", "INTEL-SA-00293", "INTEL-SA-00320", "INTEL-SA-00329", "INTEL-SA-00233", "INTEL-SA-00220", "INTEL-SA-00270", "INTEL-SA-00293", "INTEL-SA-00320", "INTEL-SA-00329"]
-    
