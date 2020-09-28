@@ -43,14 +43,18 @@ function show_help {
     echo -e \
 "Usage: upload_session [OPTIONS]
 A script to upload session. For production, please use the SCONE CLI instead.
+
 The following options are supported:
   --template=[TEMPLATE_FILE] policy template file
   --session=[SESSION_FILE]   set the base image
   --image=[IMAGE]            global name of the image
   --cas=[CAS_ADDR]           name of the CACAS_ADDRS
+
   -h, --help                 display this help and exit
+
 Usage example: encrypt Python image
 ./upload_session --from=native_flask_restapi_image --to=new_image --template=flask.template --prefix=flask --cas=4-0-0.scone-cas.cf
+
 It writes the new session into file SESSION_FILE. It will push this to the specified CAS.
 On success, it will print the session name on stdout.
 "

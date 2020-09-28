@@ -1,29 +1,32 @@
-var express = require('express')
-const https = require("https")
-const fs = require("fs")
+var express = require('express');
+const https = require("https"),
+fs = require("fs");
 
-console.log("Example tls app start!")
-console.log("Read the secret: "+process.env.GREETING)
+console.log('Example tls app start!');
+console.log('read the secret :'+process.env.GREETING)
 
-const keyFilePath = "/tls/key.pem"
-const certFilePath = "/tls/cert.pem"
+const keyFilePath = '/tls/key.pem';
+const certFilePath = '/tls/cert.pem';
 
-var privateKey = fs.readFileSync(keyFilePath, "utf8")
-var certificate = fs.readFileSync(certFilePath, "utf8")
 
-var credentials = {key: privateKey, cert: certificate}
+var privateKey  = fs.readFileSync(keyFilePath, 'utf8');
+var certificate = fs.readFileSync(certFilePath, 'utf8');
 
-var app = express()
-var httpServer = https.createServer(credentials, app)
+var credentials = {key: privateKey, cert: certificate};
 
-app.get("/", function(req, res) {
-    console.log("scone mode is: "+process.env.GREETING)
-    res.send("Hello world!" + process.env.GREETING)
-})
+var app = express();
+var httpsServer = https.createServer(credentials, app);
 
-httpServer.listen(443, () => {
-    console.log("Example tls app listening ob port 443!")
-    console.log("Scone mode is: " + process.env.GREETING)
-    console.log("OK.")
-})
+
+app.get('/', function (req, res) {
+  console.log('scone mode is :'+process.env.GREETING)
+  res.send('Hello World!' + process.env.GREETING);
+});
+
+httpsServer.listen(443, function () {
+  console.log('Example tls app listening on port 443!');
+  console.log('scone mode is :'+process.env.GREETING)
+  console.log('Ok.');
+});
+
 
