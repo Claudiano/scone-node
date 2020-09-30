@@ -1,0 +1,21 @@
+version: '3.2'
+services:
+  cas:
+    command: sh -c "SCONE_HEAP=1G cas -c /etc/cas/cas.toml"
+    environment:
+     - SCONE_LOG=7
+     - SCONE_MODE=HW
+     - SCONE_LAS_ADDR={IP}
+    image: sconecuratedimages/services:cas
+    volumes:
+        - "/dev/isgx:/dev/isgx"
+    ports:
+        - target: 8081
+          published: 8081
+          protocol: tcp
+          mode: host
+        - target: 18765
+          published: 18765
+          protocol: tcp
+          mode: host
+

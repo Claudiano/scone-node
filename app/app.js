@@ -28,5 +28,3 @@ httpsServer.listen(443, function () {
   console.log('scone mode is :'+process.env.GREETING)
   console.log('Ok.');
 });
-
-

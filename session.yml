@@ -1,4 +1,4 @@
-name: $NODE_SESSION
+name: NODE_SESSION-2
 version: "0.3"
 
 # Access control:
@@ -14,7 +14,7 @@ access_policy:
 services:
    - name: app
      image_name: node_image
-     mrenclaves: [$MRENCLAVE]
+     mrenclaves: [e9744ef0e1123da5772b4440bc186c6bf19cad257d326215dfdf76cdb93c83d8]
      command: node /app/app.js
      environment:
       SCONE_MODE: hw
@@ -52,4 +52,3 @@ security:
   attestation:
     tolerate: [debug-mode, hyperthreading, insecure-igpu, outdated-tcb]
     ignore_advisories: ["INTEL-SA-00076", "INTEL-SA-00088", "INTEL-SA-00106", "INTEL-SA-00115", "INTEL-SA-00135", "INTEL-SA-00203", "INTEL-SA-00161", "INTEL-SA-00220", "INTEL-SA-00270", "INTEL-SA-00293", "INTEL-SA-00320", "INTEL-SA-00329", "INTEL-SA-00233", "INTEL-SA-00220", "INTEL-SA-00270", "INTEL-SA-00293", "INTEL-SA-00320", "INTEL-SA-00329"]
-

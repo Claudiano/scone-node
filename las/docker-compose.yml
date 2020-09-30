@@ -1,0 +1,11 @@
+version: '3.2'
+services:
+  las:
+    image: sconecuratedimages/services:las
+    volumes:
+      - "/dev/isgx:/dev/isgx"
+    ports:
+        - target: 18766
+          published: 18766
+          protocol: tcp
+          mode: host
