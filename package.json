@@ -1,0 +1,22 @@
+{
+  "name": "scone-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Claudiano/scone-node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Claudiano/scone-node/issues"
+  },
+  "homepage": "https://github.com/Claudiano/scone-node#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
